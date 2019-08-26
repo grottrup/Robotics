@@ -33,7 +33,7 @@
 * Space: 4 DOF?
 
 * Under actuated robot
-    * Fewer DOF than neede
+    * Fewer DOF than needed
 
 * Over actuated robot
     * Snake like robot that uses way more joints/DOF than needed
@@ -41,4 +41,6 @@
 # meh
 
 * forwar and inverse kinematics. degrees to hit the desired point.
+* Rigid motions and homogenous transformation
 
+## Angles
