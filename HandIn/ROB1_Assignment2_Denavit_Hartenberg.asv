@@ -1,6 +1,20 @@
-%% Hey
+%% Lengths and angles of links and joints in the robot
 
-base_elb = 11;
-elb_wri1 = 17;
-wri1_wri2 = 6,5;
-wri2_tip = 16,5;
+shoulder_elb = 11;
+elb1_elb2 = 17;
+elb2_wri = 6.5;
+wri_tip = 16.5;
+
+
+%% Use Denavit-Hartenberg convention to establish coordinate frames for the robot
+% Extract the DH parameters from the model
+
+% Defines transition to next coordinate. Rotated pi/2 for elbow joint
+L1 = Revolute('a', shoulder_elb, 'alpha', pi/2);
+L2 = Revolute('a', elb1_elb2, 'alpha', 0);
+L3 = Revolute('a', elb2_wri, 'alpha', -pi/2);
+L4 = Revolute('a', elb2_wri, 'alpha', -pi/2);
+
+
+
+
