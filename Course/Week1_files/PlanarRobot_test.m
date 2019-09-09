@@ -4,7 +4,11 @@ a2 = 30;
 
 q1 = pi/4;
 q2 = -0.5;
-[x,y] = PlanarRobotFK(q1, q2, a1, a2)
+[x,y] = PlanarRobotFK(q1, q2, a1, a2) %% Forward kinematics
+
+ccx = a1 * cos(q1) + a2 * cos(q1 + q2);
+ccy = a1 * sin(q1) + a2 * sin(q1 + q2);
+
 
 PlanarRobotPlot([q1 q2],[a1 a2], [-100 100 -100 100])
 grid minor
@@ -12,7 +16,7 @@ grid minor
 x = -5;
 y = -40;
 
-[q1, q2] = PlanarRobotIK(x, y, a1, a2)
+[q1, q2] = PlanarRobotIK(x, y, a1, a2) %% Inverse kinematics
 [x,y] = PlanarRobotFK(q1, q2, a1, a2)
 
 PlanarRobotPlot([q1 q2], [a1 a2], [-100 100 -100 100])
@@ -39,4 +43,16 @@ q = [pi/4 pi/4 pi/4 pi/4 pi/4 0 pi/4 pi/4];
 
 PlanarRobotPlot(q, a, [-100 100 -100 100])
 grid minor
+
+%% Exercise 2: 
+test = doStuff(10);
+test2 = thing(10);
+
+function result = doStuff(x)
+    result = x;
+end
+
+function result2 = thing(x)
+    result2 = x;
+end
 
