@@ -1,5 +1,7 @@
 %% Lengths and angles of links and joints in the robot
+clear
 
+base_shoulder = 0; % value doesn't matter that much and we didn't read it yet
 shoulder_elb = 11;
 elb1_elb2 = 17;
 elb2_wri = 6.5;
@@ -10,11 +12,23 @@ wri_tip = 16.5;
 % Extract the DH parameters from the model
 
 % Defines transition to next coordinate. Rotated pi/2 for elbow joint
-L1 = Revolute('a', shoulder_elb, 'alpha', pi/2);
-L2 = Revolute('a', elb1_elb2, 'alpha', 0);
-L3 = Revolute('a', elb2_wri, 'alpha', -pi/2);
+L1 = Revolute('d', base_shoulder, 'alpha', pi/2);
+L2 = Revolute('d', shoulder_elb, 'alpha', pi/2);
+L3 = Revolute('a', elb1_elb2, 'alpha', 0);
 L4 = Revolute('a', elb2_wri, 'alpha', -pi/2);
+L5 = Revolute('d', wri_tip, 'alpha', 0);
 
+robot = SerialLink([L1, L2, L3, L4, L5]);
 
+%% Calculate the transformation A-matrices between frames
+syms theta1 theta2 theta3 theta4 theta5
 
+A_j = [cos(theta1) 2 3 cos(theta1); 
+        1 cos(theta1) cos(theta1) 4; 1 2 cos(theta1) 4; 1 2 3 4]
 
+%% Calculate the full transformation ??0 between base and end effector frames
+%syms q1 q2 q3 q4 q5 q6
+
+%crustcrawler_symbolic = crustcrawler.sym();
+
+%Tsym = crustcrawler_symbolic.fkine([q1 q2 q3 q4 q5 q6])

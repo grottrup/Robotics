@@ -1,12 +1,6 @@
 %% Init model
 clear
 
-% Init Robotics Toolbox
-mydir = pwd;
-cd('U:\Kurser_undervisning\ITROB1\PeterCorke_Matlab_robotics\robot-10.2\rvctools')
-startup_rvc
-cd(mydir)
-
 load Human_Arm_model
 
 % Or try with UR 10 : 
