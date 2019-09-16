@@ -35,7 +35,7 @@ T= A(:,:,1)*A(:,:,2)*A(:,:,3)*A(:,:,4)*A(:,:,5)
 L1 = Revolute('d', base_shoulder, 'alpha', 0);
 L2 = Revolute('d', shoulder_elb, 'alpha', pi/2);
 L3 = Revolute('a', elb1_elb2, 'alpha', 0);
-L4 = Revolute('a', elb2_wri, 'alpha', -pi/2);
+L4 = Revolute('a', elb2_wri, 'alpha', pi/2);
 L5 = Revolute('d', wri_tip, 'alpha', 0);
 
 robot = SerialLink([L1, L2, L3, L4, L5]);
