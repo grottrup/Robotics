@@ -1,5 +1,6 @@
 %% Lengths and angles of links and joints in the robot
 clear
+clc
 
 base_shoulder = 0; % value doesn't matter that much and we didn't read it yet
 shoulder_elb = 11;
@@ -27,13 +28,14 @@ theta = [theta1, theta2, theta3, theta4, theta5];
 a = [0, 0, 0, 0, 0];
 d = [0, 0, 0, 0, 0];
 alpha = [0, 0, 0, 0, 0];
-A = [0, 0, 0, 0, 0];
+A(4,:,5) = [0, 0, 0, 0];
 
+%%
 for j=1:5
-    A(j) =   [ cos(theta(j)) -sin(theta(j))*cos(alpha(j)) sin(theta(j))*sin(alpha(j)) a(j)*cos(theta(j)); 
-              sin(theta(j)) cos(theta(j))*cos(alpha(j)) -cos(theta(j))*sin(alpha(j)) alpha(j)*sin(theta(j)); 
-              0 sin(alpha(j)) cos(alpha(j)) d(j); 
-              0 0 0 1];
+    A(:,:,j) =[cos(theta(j))    -sin(theta(j))*cos(alpha(j))     sin(theta(j))*sin(alpha(j))     a(j)*cos(theta(j)); 
+              sin(theta(j))     cos(theta(j))*cos(alpha(j))     -cos(theta(j))*sin(alpha(j))    alpha(j)*sin(theta(j)); 
+              0                 sin(alpha(j))                   cos(alpha(j))                   d(j); 
+              0                 0                               0                               1]
 end
 %% Calculate the full transformation ??0 between base and end effector frames
 
