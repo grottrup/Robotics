@@ -23,16 +23,23 @@ robot = SerialLink([L1, L2, L3, L4, L5]);
 %% Calculate the transformation A-matrices between frames
 syms theta1 theta2 theta3 theta4 theta5 
 
+theta = [theta1, theta2, theta3, theta4, theta5];
 a = [0, 0, 0, 0, 0];
 d = [0, 0, 0, 0, 0];
 alpha = [0, 0, 0, 0, 0];
+A = [0, 0, 0, 0, 0];
 
-A_j =   [ cos(theta1) -sin(theta1)*cos(alpha(1)) sin(theta1)*sin(alpha(1)) a(1)*cos(theta1); 
-          sin(theta1) cos(theta1)*cos(alpha(1)) -cos(theta1)*sin(alpha(1)) alpha(1)*sin(theta1); 
-          0 sin(alpha(1)) cos(alpha(1)) d(1); 
-          0 0 0 1]
-
+for j=1:5
+    A(j) =   [ cos(theta(j)) -sin(theta(j))*cos(alpha(j)) sin(theta(j))*sin(alpha(j)) a(j)*cos(theta(j)); 
+              sin(theta(j)) cos(theta(j))*cos(alpha(j)) -cos(theta(j))*sin(alpha(j)) alpha(j)*sin(theta(j)); 
+              0 sin(alpha(j)) cos(alpha(j)) d(j); 
+              0 0 0 1];
+end
 %% Calculate the full transformation ??0 between base and end effector frames
+
+%robot.teach()
+%robot.fkine([0.1, 0.2])
+
 %syms q1 q2 q3 q4 q5 q6
 
 %crustcrawler_symbolic = crustcrawler.sym();
