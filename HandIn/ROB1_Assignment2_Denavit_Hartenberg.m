@@ -25,18 +25,18 @@ robot = SerialLink([L1, L2, L3, L4, L5]);
 syms theta1 theta2 theta3 theta4 theta5 
 
 theta = [theta1, theta2, theta3, theta4, theta5];
-a = [0, 0, 0, 0, 0];
-d = [0, 0, 0, 0, 0];
-alpha = [0, 0, 0, 0, 0];
-A(4,:,5) = [0, 0, 0, 0];
+a = [0, 0, elb1_elb2, elb2_wri, 0];
+d = [base_shoulder, shoulder_elb, 0, 0, wri_tip];
+alpha = [0, pi/2, 0, -pi/2, 0];
 
-%%
 for j=1:5
-    A(:,:,j) =[cos(theta(j))    -sin(theta(j))*cos(alpha(j))     sin(theta(j))*sin(alpha(j))     a(j)*cos(theta(j)); 
-              sin(theta(j))     cos(theta(j))*cos(alpha(j))     -cos(theta(j))*sin(alpha(j))    alpha(j)*sin(theta(j)); 
-              0                 sin(alpha(j))                   cos(alpha(j))                   d(j); 
-              0                 0                               0                               1]
+    A(:,:,j) = [ cos(theta(j)) -sin(theta(j))*cos(alpha(j)) sin(theta(j))*sin(alpha(j)) a(j)*cos(theta(j)); 
+              sin(theta(j)) cos(theta(j))*cos(alpha(j)) -cos(theta(j))*sin(alpha(j)) alpha(j)*sin(theta(j)); 
+              0 sin(alpha(j)) cos(alpha(j)) d(j); 
+              0 0 0 1];
 end
+
+T= A(:,:,1)*A(:,:,2)*A(:,:,3)*A(:,:,4)*A(:,:,5)
 %% Calculate the full transformation ??0 between base and end effector frames
 
 %robot.teach()
