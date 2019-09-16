@@ -1,5 +1,6 @@
 %% Lengths and angles of links and joints in the robot
 clear
+clc
 
 base_shoulder = 0; % value doesn't matter that much and we didn't read it yet
 shoulder_elb = 11;
