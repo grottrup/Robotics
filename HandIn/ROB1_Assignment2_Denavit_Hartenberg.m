@@ -49,7 +49,28 @@ robot = SerialLink([L1, L2, L3, L4, L5, L6], 'name', 'Crustcrawler');
 theta = [0 0 pi/2 0 pi/2 0];
 T1 = robot.fkine(theta)
 robot.plot(theta);
-%robot.teach()
+robot.teach()
 
 %%
 T2 = robot.ikine(T1)
+
+
+%%
+yarr = -16.5:1:16.5; % y-values
+zarr = 11*ones(size(yarr)); % z-values (constant)
+xarr = 23.5*ones(size(yarr)); % x-values (constant)
+
+Tinit = transl(xarr(1), yarr(1), zarr(1))
+ikineTinit = robot.ikcon(Tinit)
+qseq = zeros(length(xarr), 6);
+qseq(1,:) = robot.ikcon(Tinit);
+%  'ilimit',L     set the maximum iteration count (default 1000)
+%   'tol',T        set the tolerance on error norm (default 1e-6)
+%   'alpha',A      set step size gain (default 1)
+  
+for i= 2:length(xarr), % note: from i=2
+    T = transl(xarr(i), yarr(i), zarr(i)); % homogeneous transform
+    qseq(i,:) = robot.ikcon(T);
+end
+
+robot.plot(qseq, 'trail', 'r')
