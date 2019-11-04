@@ -13,10 +13,10 @@ clc
 load CrustCrawler_object
 
 %% Forward Kinematic
-qn = [0 0 0 0.3];
-T1 = crawl.fkine(qn)
-crawl.plot(qn); %, 'workspace', [-10 10 -10 10 -10 10])
-crawl.teach()
+% qn = [0 0 0 0.3];
+% T1 = crawl.fkine(qn)
+% crawl.plot(qn); %, 'workspace', [-10 10 -10 10 -10 10])
+% crawl.teach()
 
 %% Testing Inverse Kinematics
 o = [30 0 0];

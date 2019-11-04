@@ -5,18 +5,18 @@ function q = CrustInvKin(o, R )
 % Outputs : angles          q [1x4] (for the CrustCrawler robot)
 
 
-%d1 = 10; % cm (height of 2nd joint)
-%a1 = 5; % (distance along "y-axis" to 2nd joint)
-%a2 = 20; % (distance between 2nd and 3rd joints)
-%d4 = 20; % (distance from 3rd joint to gripper center - all inclusive, ie. also 4th joint)
+d1 = 10; % cm (height of 2nd joint)
+a1 = 5; % (distance along "y-axis" to 2nd joint)
+a2 = 20; % (distance between 2nd and 3rd joints)
+d4 = 20; % (distance from 3rd joint to gripper center - all inclusive, ie. also 4th joint)
 
-a1 = 11;
-d1 = 0;
-a2 = 17;
-a3 = 6.5;
-d4 = 16.5;
+% a1 = 11;
+% d1 = 0;
+% a2 = 17;
+% a3 = 6.5;
+% d4 = 16.5;
 
-% Calculate oc
+% Calculate oc position of tip
 oc = o; % - d4*R*[0;0;1] ;
 xc = oc(1); yc = oc(2); zc = oc(3);
 
